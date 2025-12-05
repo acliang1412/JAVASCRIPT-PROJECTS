@@ -23,3 +23,8 @@ function division() {
     var simple_Math = 48 / 6;
     document.getElementById("Math").innerHTML = "48 / 6 = " + simple_Math;
 }
+
+function more_Math() {
+    var simple_Math = (2 + 3) * 4 / 2 - 5;
+    document.getElementById("Math").innerHTML = "2 plus 3, multiplied by 4, divided in half and then subtracted by 5 equals " + simple_Math;
+}
