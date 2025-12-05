@@ -6,7 +6,20 @@ function performCalculation() {
     document.getElementById("Math").innerHTML = "5 + 7 = " + result;
 }
 
+// This function performs a subtraction operation
 function subtraction_Function() {
-}    var Subtraction = 10 - 5;
+    var Subtraction = 10 - 5;
     document.getElementById("Math").innerHTML = "10 - 5 = " + Subtraction;
-    
+}
+
+// This function performs a multiplication operation
+function multiplication() {
+    var simple_Math = 6 * 8;
+    document.getElementById("Math").innerHTML = "6 * 8 = " + simple_Math;
+}
+
+// This function performs a division operation
+function division() {
+    var simple_Math = 48 / 6;
+    document.getElementById("Math").innerHTML = "48 / 6 = " + simple_Math;
+}
