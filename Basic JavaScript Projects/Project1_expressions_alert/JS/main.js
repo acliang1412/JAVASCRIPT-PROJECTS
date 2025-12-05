@@ -23,3 +23,20 @@ var result = 10 + 5; // This expression adds 10 and 5, resulting in 15
 
 // Display the result of the expression on the page
 document.write("<br>The result of the expression 10 + 5 is: " + result);
+
+// Create a variable with a string value for the beginning of a sentence
+var Sent1 = "This is the beginning of the string";
+
+// Create a variable with a string value for the end of a sentence
+var Sent2 = " and this is the end of the string";
+
+// Concatenate the two string variables and display the result on the page using document.write()
+document.write("<br>" + Sent1 + Sent2);
+
+// Write an expression and display its result on the page
+document.write("<br>Here is an expression: " + (25 / 5));
+
+// This function is called by the onclick event in the HTML
+function displayMessage() {
+    window.alert("You triggered the click event!");
+}
