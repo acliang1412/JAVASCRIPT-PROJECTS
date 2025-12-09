@@ -73,3 +73,9 @@ console.log(8 * 4);
 
 // Display "false" in the console using Boolean logic
 console.log(5 > 10);
+
+function not_Function() {
+    document.getElementById("Not").innerHTML = !(20 > 10);
+}
+
+
