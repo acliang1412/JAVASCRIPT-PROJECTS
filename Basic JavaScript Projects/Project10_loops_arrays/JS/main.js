@@ -36,3 +36,11 @@ function arrayFunction() {
     Cat_Picture[3] = "purring";
     document.getElementById("Array").innerHTML = "In this picture, the cat is " + Cat_Picture[2] + ".";
 }
+
+// A constant object demonstration
+function constantFunction() {
+    const Musical_Instrument = {type:"guitar", brand:"Fender", color:"black"};
+    Musical_Instrument.color = "blue";
+    Musical_Instrument.price = "$900";
+    document.getElementById("Constant").innerHTML = "The " + Musical_Instrument.color + " " + Musical_Instrument.brand + " " + Musical_Instrument.type + " costs " + Musical_Instrument.price + ".";
+}
