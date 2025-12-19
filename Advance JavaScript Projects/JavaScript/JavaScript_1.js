@@ -42,8 +42,8 @@ function Hello_World_Function() {
 
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
-var grd = ctx.createLinearGradient(0, 0, 170, 0);
+var grd = ctx.createLinearGradient(0, 0, c.width, 0);
 grd.addColorStop(0, "black");
 grd.addColorStop(1, "white");
 ctx.fillStyle = grd;
-ctx.fillRect(20, 20, 150, 100);
+ctx.fillRect(0, 0, c.width, c.height);
