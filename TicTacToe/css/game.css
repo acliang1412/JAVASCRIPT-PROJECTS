@@ -1,3 +1,8 @@
+h1 {
+    text-align: center;
+    color: green;
+}
+
 /*This container includes our table and our canvas.*/
 .center-container {
     /*This property sets the width of our container.*/
