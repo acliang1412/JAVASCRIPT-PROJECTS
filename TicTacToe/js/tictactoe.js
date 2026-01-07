@@ -90,7 +90,7 @@ function checkWinConditions() {
     // O 3, 4, 5 condition.
     else if (arrayIncludes('3O', '4O', '5O')) { drawWinLine(50, 304, 558, 304) }
     // O 6, 7, 8 condition.
-    else if (arrayIncludes('6O', '7O', '8O')) { drawWinLine(50, 508, 558, 508) }   
+    else if (arrayIncludes('6O', '7O', '8O')) { drawWinLine(50, 508, 558, 508) }
     // O 0, 3, 6 condition.
     else if (arrayIncludes('0O', '3O', '6O')) { drawWinLine(100, 50, 100, 558) }
     // O 1, 4, 7 condition.
@@ -143,19 +143,67 @@ function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
     //This line gives us access to methods and properties to use on canvas.
     const c = canvas.getContext('2d');
     //This line indicates where the start of a line x axis is.
-    c.beginPath();
-    //This line indicates where the start of a line y axis is.
-    c.moveTo(coordX1, coordY1);
-    //This line indicates where the end of a line x axis is.
-    c.lineTo(coordX2, coordY2);
-    //This line indicates where the end of a line y axis is.
-    c.lineTo(coordX2, coordY2);
-    //This line sets the width of the line.
-    c.lineWidth = 10;
-    //This line sets the color of the line.
-    c.strokeStyle = '#FF0000';
-    //This line draws the actual line.
-    c.stroke();
-    //This line makes our body temporarily unclickable.
+    let x1 = coordX1,
+        //This line indicates where the start of a line y axis is.
+        y1 = coordY1,
+        //This line indicates where the end of a line x axis is.
+        x2 = coordX2,
+        //This line indicates where the end of a line y axis is.
+        y2 = coordY2,
+        //This variable stores temporary x axis data we update in our animation loop
+        x = x1,
+        //This variable stores temporary y axis data we update in our animation loop
+        y = y1;
+    //This function interacts with the canvas.
+    function animateLineDrawing() {
+        //This variable creates the loop for when the game ends it restarts.
+        const animationLoop = requestAnimationFrame(animateLineDrawing);
+        //This method clears any content from the last loop iteration.
+        c.clearRect(0, 0, 608, 608);
+        //This method starts a new path.
+        c.beginPath();
+        //This method moves us to a starting point in our line.
+        c.moveTo(x1, y1);
+        //This method indicates the end point in our line.
+        c.lineTo(x, y);
+        //This method sets the width of our line.
+        c.lineWidth = 10;
+        //This method sets the color of our line.
+        c.strokeStyle = 'rgba(70, 255, 33, .8)';
+        //This method draws everything we laid out above.
+        c.stroke();
+        //This condition checks if we've reached the endpoint.
+        if (x1 <= x2 && y1 <= y2) {
+            //This condition adds 10 to the previous x endpoint.
+            if (x < x2) { x += 10; }
+            //This condition adds 10 to the previous y endpoint.
+            if (y < y2) { y += 10; }
+            //This condition cancels our animation loop if we have reached the endpoints.
+            if (x >= x2 && y >= y2) { cancelAnimationFrame(animationLoop); }
+        }
+        //This condition is similar to the one above.
+        //This is necessary for the 6, 4, 2 win condition.
+        if (x1 <= x2 && y1 >= y2) {
+            if (x < x2) { x += 10; }
+            if (y > y2) { y -= 10; }
+            if (x >= x2 && y <= y2) { cancelAnimationFrame(animationLoop); }
+        }
+    }
+    //This function clears our canvas after our win line is drawn.
+    function clear() {
+        //This line starts our animation loop.
+        const animationLoop = requestAnimationFrame(clear);
+        //This method clears our canvas.
+        c.clearRect(0, 0, 608, 608);
+        //This line stops our animation loop.
+        cancelAnimationFrame(animationLoop);
+    }
+    //This line disallows clicking while the win sound is playing.
     disableClick();
-    //This line waits 1 second
+    //This line plays the win sounds.
+    audio('./media/winGame.mp3');
+    //This line calls our main animation loop.
+    animateLineDrawing();
+    //This line waits 1 second. Then, clears canvas, resets game, and allows clicking again.
+    setTimeout(function () { clear(); resetGame(); }, 1000);
+}
