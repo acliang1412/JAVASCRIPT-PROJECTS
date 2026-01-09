@@ -50,15 +50,15 @@ function Handle_Operator(Next_Operator) {
     if (First_Operand == null) {
         Calculator.First_Operand = Value_of_Input;
     } else if (operator) {//Checks if an operator already exists
-        const Value_Now = First_Operand;
+        const Value_Now = First_Operand || 0;
         //If operator exists, property lookup is performed for the operator
         let result = Perform_Calculation[operator](Value_Now, Value_of_Input);
         //Here we add a fixed amount of numbers after the decimal
-        result = Number(result).toFixed(9)
+        result = Number(result).toFixed(9);
         //This will remove any trailing 0's
-        result = (result * 1).toString()
+        result = (result * 1).toString();
         Calculator.Display_Value = result;
-        Calculator.First_Operand = result;
+        Calculator.First_Operand = parseFloat(result);
     }
     Calculator.Wait_Second_Operand = true;
     Calculator.operator = Next_Operator;
@@ -84,6 +84,7 @@ function Update_Screen() {
     const display = document.querySelector('.calculator-screen');
     display.value = Calculator.Display_Value;
 }
+Update_Screen();
 //This section monitors button clicks
 const keys = document.querySelector('.calculator-keys');
 keys.addEventListener('click', (event) => {
